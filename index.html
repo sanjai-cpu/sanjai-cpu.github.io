@@ -1,180 +1,781 @@
-/* Existing @import and base styles remain the same */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanjai's Portfolio</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-/* Global font size reduction */
-html {
-    font-size: 56.25%; /* Base font size, adjust as needed */
-}
+        :root {
+            --bg-color: #262A2F;
+            --main-bg-color: #17181D;
+            --text-color: #fff;
+            --main-color: #8a2be2;
+            --second-bg-color: #34343a;
+        }
 
-body {
-    background: var(--bg-color);
-    color: var(--text-color);
-    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
-    line-height: 1.6; /* Added for better readability with smaller fonts */
-}
+        .light-theme {
+            --bg-color: #f0f0f0;
+            --main-bg-color: #fff;
+            --text-color: #262A2F;
+            --main-color: #8a2be2;
+            --second-bg-color: #e6e6e6;
+        }
 
-/* Header Adjustments */
-.header {
-    padding: 1.5rem 9%; /* Reduced padding */
-}
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
 
-.logo {
-    font-size: 2rem; /* Reduced logo size */
-}
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 9%;
+            background: var(--main-bg-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
 
-.navbar a {
-    font-size: 1.1rem; /* Reduced navigation link size */
-    margin: 0 1rem; /* Reduced margin between links */
-}
+        .logo {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif; /* Adjusted font to match the home section */
+        }
+        
+        .logo span {
+            font-weight: 700;
+        }
 
-#menu-icon {
-    font-size: 2.8rem; /* Reduced menu icon size */
-}
+        .navbar {
+            display: flex;
+            justify-content: center;
+        }
 
-#theme-toggle {
-    font-size: 2rem; /* Reduced theme toggle icon size */
-}
+        .navbar a {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            font-weight: 500;
+            margin: 0 1.5rem;
+            transition: 0.3s;
+        }
 
-/* Home Section Adjustments */
-.home-content h1 {
-    font-size: 4rem; /* Reduced main heading size */
-    margin-bottom: 0.3rem;
-}
+        .navbar a:hover,
+        .navbar a.active {
+            color: var(--main-color);
+        }
+        
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        #menu-icon {
+            font-size: 3.6rem;
+            color: var(--text-color);
+            cursor: pointer;
+            display: none;
+        }
+        
+        #theme-toggle {
+            font-size: 2.4rem;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-.home-content h3 {
-    font-size: 1.6rem; /* Reduced subheading size */
-    margin-bottom: 1rem;
-    height: 2rem; /* Adjusted fixed height */
-}
+        section {
+            min-height: 100vh;
+            padding: 10rem 9% 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-.home-content p {
-    font-size: 1.2rem; /* Reduced paragraph font size */
-    max-width: 60rem; /* Adjusted max-width for better text flow */
-}
+        .home {
+            text-align: center;
+            background: var(--main-bg-color); /* Same as the rest of the sections */
+        }
+        
+        .home-content h1 {
+            font-size: 6rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
 
-.social-media a {
-    width: 3.2rem; /* Reduced social media icon size */
-    height: 3.2rem;
-    font-size: 1.6rem;
-    margin: 2rem 1rem 0 0; /* Adjusted margin */
-}
+        .home-content h3 {
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--main-color);
+            margin-bottom: 2rem;
+            height: 2.5rem; /* Set a fixed height for the scrolling container */
+            overflow: hidden; /* Hide the overflowing text */
+        }
+        
+        .home-content h3 span {
+            display: block;
+            color: var(--main-color);
+            animation: text-scroll 8s infinite cubic-bezier(1, 0, 0, 1); /* Animation for the scrolling effect */
+        }
+        
+        .home-content p {
+            font-size: 1.6rem;
+            max-width: 70rem;
+            margin: 0 auto;
+        }
 
-.btn {
-    padding: 0.8rem 2rem; /* Reduced button padding */
-    font-size: 1.2rem; /* Reduced button font size */
-}
+        .social-media a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 4rem;
+            height: 4rem;
+            background: transparent;
+            border: 0.2rem solid var(--main-color);
+            border-radius: 50%;
+            font-size: 2rem;
+            color: var(--main-color);
+            margin: 3rem 1.5rem 0 0;
+            transition: 0.5s ease;
+        }
 
-/* About Section Adjustments */
-.heading {
-    font-size: 3rem; /* Reduced section heading size */
-    margin-bottom: 2rem; /* Added margin for better spacing */
-}
+        .social-media a:hover {
+            background: var(--main-color);
+            color: var(--text-color); /* Changed color to white */
+            box-shadow: 0 0 1rem var(--main-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background: var(--main-color);
+            border-radius: 4rem;
+            font-size: 1.6rem;
+            color: white; /* Changed text color to white */
+            letter-spacing: 0.1rem;
+            font-weight: 600;
+            transition: transform 0.3s ease; /* Updated transition */
+            text-align: center;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px); /* Gentle rise-up effect */
+        }
 
-.about-content h3 {
-    font-size: 2rem; /* Reduced subheading size */
-}
+        .btn i {
+            margin-left: 0.5rem;
+        }
 
-.about-content p {
-    font-size: 1.2rem; /* Reduced paragraph font size */
-    margin: 1.5rem 0 2rem; /* Adjusted margin */
-}
+        .about {
+            background: var(--main-bg-color);
+        }
 
-.about-img {
-    width: 25rem; /* Reduced image container size */
-    height: 25rem;
-}
+        .heading {
+            text-align: center;
+            font-size: 4.5rem;
+        }
 
-/* Services (Skills) Section Adjustments */
-.services-container .services-box {
-    padding: 2.5rem 1.5rem 3rem; /* Reduced padding */
-}
+        .about-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 2rem;
+            width: 100%;
+        }
 
-.services-box i {
-    font-size: 5rem; /* Reduced icon size */
-}
+        .about-content h3 {
+            font-size: 2.6rem;
+        }
 
-.services-box h3 {
-    font-size: 2rem; /* Reduced subheading size */
-}
+        .about-content p {
+            font-size: 1.6rem;
+            margin: 2rem 0 3rem;
+        }
 
-.services-box p {
-    font-size: 1.2rem; /* Reduced paragraph font size */
-    margin: 0.8rem 0 2rem; /* Adjusted margin */
-}
+        .about-img {
+            width: 35rem;
+            height: 35rem;
+            border-radius: 50%;
+            background: var(--main-color);
+            box-shadow: 0 0 1rem var(--main-color);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-/* Portfolio Section Adjustments */
-.portfolio h2 {
-    margin-bottom: 3rem; /* Adjusted margin */
-}
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            transform: scale(1.1);
+        }
 
-.portfolio-layer h4 {
-    font-size: 2.2rem; /* Reduced heading size in portfolio overlay */
-}
+        .skills, .education {
+            text-align: center;
+        }
 
-.portfolio-layer p {
-    font-size: 1.2rem; /* Reduced paragraph font size in portfolio overlay */
-    margin: 0.2rem 0 0.8rem; /* Adjusted margin */
-}
+        .services-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
 
-.portfolio-layer a {
-    width: 4rem; /* Reduced link icon size */
-    height: 4rem;
-}
+        .services-container .services-box {
+            flex: 1 1 30rem;
+            background: var(--main-bg-color);
+            padding: 3rem 2rem 4rem;
+            border-radius: 2rem;
+            text-align: center;
+            border: 0.2rem solid var(--bg-color);
+            transition: 0.5s ease;
+        }
 
-.portfolio-layer a i {
-    font-size: 1.6rem; /* Reduced icon size in portfolio overlay */
-}
+        .services-container .services-box:hover {
+            border-color: var(--main-color);
+            transform: scale(1.02);
+        }
+        
+        .services-box i {
+            font-size: 7rem;
+            color: var(--main-color);
+        }
 
-/* Contact Section Adjustments */
-.contact h2 {
-    margin-bottom: 2rem; /* Adjusted margin */
-}
+        .services-box h3 {
+            font-size: 2.6rem;
+        }
 
-.contact form .input-box input,
-.contact form textarea {
-    padding: 1.2rem; /* Reduced padding */
-    font-size: 1.2rem; /* Reduced font size */
-    margin: 0.5rem 0; /* Adjusted margin */
-}
+        .services-box p {
+            font-size: 1.6rem;
+            margin: 1rem 0 3rem;
+        }
 
-/* Footer Adjustments */
-.footer-text p {
-    font-size: 1.2rem; /* Reduced footer text size */
-}
+        .portfolio {
+            background: var(--main-bg-color);
+            text-align: center;
+        }
 
-.footer-iconTop a {
-    padding: 0.6rem; /* Reduced padding */
-}
+        .portfolio h2 {
+            margin-bottom: 4rem;
+        }
 
-.footer-iconTop a i {
-    font-size: 2rem; /* Reduced icon size */
-}
+        .portfolio-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            align-items: center;
+            gap: 2.5rem;
+        }
 
-/* Media Queries Adjustments (important for responsiveness) */
-@media (max-width: 1200px) {
-    html {
-        font-size: 50%; /* Further reduced base font for larger screens */
-    }
-}
+        .portfolio-container .portfolio-box {
+            position: relative;
+            border-radius: 2rem;
+            box-shadow: 0 0 1rem var(--bg-color);
+            overflow: hidden;
+            display: flex;
+        }
 
-@media (max-width: 768px) {
-    .navbar a {
-        font-size: 1.6rem; /* Adjusted for mobile menu readability */
-        margin: 2rem 0;
-    }
-    .home-content h1 {
-        font-size: 3.5rem; /* Further adjustment for mobile */
-    }
-    .home-content h3 {
-        font-size: 2rem;
-    }
-    .about-img {
-        width: 25rem;
-        height: 25rem;
-    }
-}
+        .portfolio-box img {
+            width: 100%;
+            transition: 0.5s ease;
+        }
 
-@media (max-width: 450px) {
-    html {
-        font-size: 40%; /* Even smaller base font for very small screens */
-    }
-}
+        .portfolio-box:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-box .portfolio-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.1), var(--main-color));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 0 4rem;
+            transform: translateY(100%);
+            transition: 0.5s ease;
+        }
+
+        .portfolio-box:hover .portfolio-layer {
+            transform: translateY(0);
+        }
+
+        .portfolio-layer h4 {
+            font-size: 3rem;
+        }
+
+        .portfolio-layer p {
+            font-size: 1.6rem;
+            margin: 0.3rem 0 1rem;
+        }
+
+        .portfolio-layer a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 5rem;
+            height: 5rem;
+            background: var(--text-color);
+            border-radius: 50%;
+        }
+
+        .portfolio-layer a i {
+            font-size: 2rem;
+            color: var(--second-bg-color);
+        }
+        
+        .contact {
+            text-align: center;
+        }
+        
+        .contact h2 {
+            margin-bottom: 3rem;
+        }
+        
+        .contact form {
+            max-width: 70rem;
+            margin: 1rem auto;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .contact form .input-box {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .contact form .input-box input,
+        .contact form textarea {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 1.6rem;
+            color: var(--text-color);
+            background: var(--main-bg-color);
+            border-radius: 0.8rem;
+            margin: 0.7rem 0;
+        }
+
+        .contact form .input-box input {
+            width: 49%;
+        }
+
+        .contact form textarea {
+            resize: none;
+        }
+
+        .contact form .btn {
+            margin-top: 2rem;
+            cursor: pointer;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 2rem 9%;
+            background: var(--main-bg-color);
+        }
+
+        .footer-text p {
+            font-size: 1.6rem;
+        }
+
+        .footer-iconTop a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.8rem;
+            background: var(--main-color);
+            border-radius: 0.8rem;
+            transition: 0.5s ease;
+        }
+
+        .footer-iconTop a:hover {
+            box-shadow: 0 0 1rem var(--main-color);
+        }
+
+        .footer-iconTop a i {
+            font-size: 2.4rem;
+            color: var(--second-bg-color);
+        }
+
+        /* Animations */
+        @keyframes text-scroll {
+            0% { transform: translateY(0); }
+            33% { transform: translateY(-100%); }
+            66% { transform: translateY(-200%); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Apply the new animation to home content */
+        .home-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @media (max-width: 1200px) {
+            html {
+                font-size: 50%;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .header {
+                padding: 2rem 4%;
+            }
+            section {
+                padding: 10rem 4% 2rem;
+            }
+            .footer {
+                padding: 2rem 4%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                background: var(--bg-color);
+            }
+            .navbar {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 1rem 4%;
+                background: var(--main-bg-color);
+                transition: 0.25s ease;
+            }
+
+            .navbar.active {
+                display: flex;
+            }
+
+            .navbar a {
+                display: block;
+                font-size: 2rem;
+                margin: 3rem 0;
+            }
+            
+            .header-icons {
+                margin-left: auto;
+            }
+            
+            #menu-icon {
+                display: block;
+            }
+
+            .home-content h1 {
+                font-size: 5rem;
+            }
+
+            .home-content h3 {
+                font-size: 2.6rem;
+            }
+            
+            .about-container {
+                flex-direction: column;
+            }
+
+            .about-img {
+                width: 30rem;
+                height: 30rem;
+            }
+            
+            .services h2 {
+                margin-bottom: 3rem;
+            }
+
+            .portfolio h2 {
+                margin-bottom: 3rem;
+            }
+
+            .portfolio-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .contact form .input-box input {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 617px) {
+            .portfolio-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 450px) {
+            html {
+                font-size: 45%;
+            }
+        }
+
+        @media (max-width: 365px) {
+            .about-img {
+                width: 25rem;
+                height: 25rem;
+            }
+
+            .footer {
+                flex-direction: column-reverse;
+            }
+            .footer-text {
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <a href="#" class="logo">Sanjai P A</a>
+
+        <nav class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#education">Education</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        
+        <div class="header-icons">
+            <i class='bx bx-moon' id="theme-toggle"></i>
+            <i class='bx bx-menu' id="menu-icon"></i>
+        </div>
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1>Hi there I'm Sanjai</h1>
+            <h3>
+                <span>AI & ML Enthusiast</span>
+                <span>Problem Solver</span>
+                <span>Software Engineer</span>
+            </h3>
+            <p>Aspiring Data Engineer & AI Enthusiast Crafting innovative solutions from data to real-world impact.</p>
+            <a href="#" class="btn" style="margin-top: 3rem;">Download Resume <i class='bx bxs-download'></i></a>
+            <div class="social-media">
+                <a href="#"><i class='bx bxl-github' ></i></a>
+                <a href="#"><i class='bx bxl-linkedin-square' ></i></a>
+            </div>
+            <a href="#about" class="down-arrow" style="margin-top: 4rem; display: block; font-size: 1.4rem; color: var(--text-color);">
+                Scroll down
+                <i class='bx bx-down-arrow-alt' ></i>
+            </a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-img">
+                <img src="https://placehold.co/400x400/17181D/8a2be2?text=Sanjai" alt="Sanjai">
+            </div>
+
+            <div class="about-content">
+                <h2 class="heading">About <span>Me</span></h2>
+                <h3>Full Stack Developer!</h3>
+                <p>A Full Stack Developer with extensive knowledge and expertise in both frontend and backend technologies. I am passionate about creating innovative and efficient applications. I have experience with a wide range of web development technologies, from building responsive user interfaces to designing scalable server-side systems. My goal is to create seamless and impactful digital experiences that solve real-world problems.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="skills">
+        <h2 class="heading">My <span>Skills</span></h2>
+
+        <div class="services-container">
+            <div class="services-box">
+                <i class='bx bx-code-alt'></i>
+                <h3>Frontend Development</h3>
+                <p>Proficient in building responsive and dynamic user interfaces using modern frameworks and libraries like React and Next.js. I have a strong command of HTML, CSS, and JavaScript, ensuring a smooth and engaging user experience.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+
+            <div class="services-box">
+                <i class='bx bx-server'></i>
+                <h3>Backend Development</h3>
+                <p>Skilled in developing robust and scalable server-side applications using technologies such as Node.js, Express, and Python. I have experience with database design, API development, and server management.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+
+            <div class="services-box">
+                <i class='bx bx-data'></i>
+                <h3>Database Management</h3>
+                <p>Experience in designing, implementing, and managing various databases, including SQL and NoSQL databases like PostgreSQL and MongoDB. I can ensure data integrity, security, and efficient querying for complex applications.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+
+            <div class="services-box">
+                <i class='bx bx-cloud-upload'></i>
+                <h3>Cloud and Deployment</h3>
+                <p>Familiar with cloud platforms like AWS and Vercel for deploying applications. I can configure CI/CD pipelines, manage serverless functions, and ensure high availability and scalability of web services.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="education" id="education">
+        <h2 class="heading">My <span>Education</span></h2>
+
+        <div class="services-container">
+            <div class="services-box">
+                <i class='bx bxs-graduation'></i>
+                <h3>Bachelor of Science</h3>
+                <p>Completed my Bachelor of Science in Computer Science from a reputable university. My curriculum included core subjects like data structures, algorithms, and software engineering principles.</p>
+            </div>
+
+            <div class="services-box">
+                <i class='bx bxs-book-open'></i>
+                <h3>Online Certifications</h3>
+                <p>Acquired several online certifications in advanced web development topics, including a Full Stack Web Developer certification and courses on modern frameworks and cloud services.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="projects">
+        <h2 class="heading">Latest <span>Projects</span></h2>
+
+        <div class="portfolio-container">
+            <div class="portfolio-box">
+                <img src="https://placehold.co/400x300/17181D/8a2be2?text=Project+1" alt="Project 1">
+                <div class="portfolio-layer">
+                    <h4>Web Design</h4>
+                    <p>A simple web design for a modern startup.</p>
+                    <a href="#"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+
+            <div class="portfolio-box">
+                <img src="https://placehold.co/400x300/17181D/8a2be2?text=Project+2" alt="Project 2">
+                <div class="portfolio-layer">
+                    <h4>Web Design</h4>
+                    <p>A dynamic e-commerce website with a secure payment gateway.</p>
+                    <a href="#"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+
+            <div class="portfolio-box">
+                <img src="https://placehold.co/400x300/17181D/8a2be2?text=Project+3" alt="Project 3">
+                <div class="portfolio-layer">
+                    <h4>Web Design</h4>
+                    <p>A responsive landing page for a new mobile application.</p>
+                    <a href="#"><i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="heading">Contact <span>Me</span></h2>
+
+        <form action="#">
+            <div class="input-box">
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email Address">
+            </div>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+            <input type="submit" value="Send Message" class="btn">
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2024 by Sanjai | All Rights Reserved.</p>
+        </div>
+
+        <div class="footer-iconTop">
+            <a href="#home"><i class='bx bx-up-arrow-alt'></i></a>
+        </div>
+    </footer>
+    
+    <script>
+        // Toggle theme and menu
+        const body = document.body;
+        const menuIcon = document.querySelector('#menu-icon');
+        const navbar = document.querySelector('.navbar');
+        const themeToggle = document.querySelector('#theme-toggle');
+
+        menuIcon.onclick = () => {
+            menuIcon.classList.toggle('bx-x');
+            navbar.classList.toggle('active');
+        };
+
+        themeToggle.onclick = () => {
+            body.classList.toggle('light-theme');
+            if (body.classList.contains('light-theme')) {
+                themeToggle.classList.remove('bx-moon');
+                themeToggle.classList.add('bx-sun');
+            } else {
+                themeToggle.classList.remove('bx-sun');
+                themeToggle.classList.add('bx-moon');
+            }
+        };
+
+        let sections = document.querySelectorAll('section');
+        let navLinks = document.querySelectorAll('header nav a');
+
+        window.onscroll = () => {
+            sections.forEach(sec => {
+                let top = window.scrollY;
+                let offset = sec.offsetTop - 150;
+                let height = sec.offsetHeight;
+                let id = sec.getAttribute('id');
+
+                if (top >= offset && top < offset + height) {
+                    navLinks.forEach(links => {
+                        links.classList.remove('active');
+                        document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+                    });
+                }
+            });
+
+            let header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 100);
+
+            // remove toggle icon and navbar when click navbar links (scroll)
+            menuIcon.classList.remove('bx-x');
+            navbar.classList.remove('active');
+        };
+    </script>
+</body>
+</html>
